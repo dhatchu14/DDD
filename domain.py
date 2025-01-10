@@ -1,4 +1,5 @@
 # Core Domain: Chocolate Production
+#ubiquitous language are batch_id,recipe,produced-date,ingreduents
 
 # Recipe:subdomain
 class Recipe:
