@@ -1,0 +1,48 @@
+class Recipe:
+    def __init__(self, name, ingredients):
+        self.name = name
+        self.ingredients = ingredients
+
+class Batch:
+    def __init__(self, batch_id, recipe, produced_date):
+        self.id = batch_id
+        self.recipe = recipe
+        self.produced_date = produced_date
+        self.quality_checks = []
+
+    def add_quality_check(self, issue):
+        self.quality_checks.append(issue)
+
+    # Aggregates and Aggregate Roots in Domain-Driven Design (DDD)
+  
+    # In this code:
+    #  Batch is an Aggregate Root that:
+    #  Controls access to its Recipe entity
+    #  Manages its collection of quality checks
+    #  Ensures all changes maintain business rules
+    #   Prevents direct manipulation of internal components
+    
+    # Example of proper aggregate usage:
+    #   batch.add_quality_check("Issue")  # Correct: through root
+    #   # Wrong: batch.quality_checks.append("Issue") 
+    #   # Wrong: batch.recipe.modify_directly()
+
+
+class QualityControl:
+    def __init__(self, batch):
+        self.batch = batch
+        self.checks = []
+
+    def add_check(self, issue):
+        self.checks.append(issue)
+        # Aggregate Root: QualityControl
+        # In Domain-Driven Design (DDD), an Aggregate is a cluster of domain objects 
+        # that can be treated as a single unit. An aggregate has a root entity (Aggregate Root) 
+        # that ensures the consistency of changes being made within the aggregate boundary.        
+        # In this example:
+        # QualityControl is the Aggregate Root
+        # It encapsulates the Batch entity and its quality checks
+        # All interactions with the batch's quality checks must go through QualityControl
+        # This ensures consistency and maintains invariants
+        # External objects should only hold references to the Aggregate Root (QualityControl) and not to the internal entities (individual checks)
+       
