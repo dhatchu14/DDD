@@ -1,12 +1,12 @@
 # Core Domain: Chocolate Production
 
-# Recipe subdomain
+# Recipe:subdomain
 class Recipe:
     def __init__(self, name, ingredients):
         self.name = name
         self.ingredients = ingredients
 
-# Batch subdomain
+# Batch:subdomain
 class Batch:
     def __init__(self, batch_id, recipe, produced_date):
         self.batch_id = batch_id
@@ -17,7 +17,7 @@ class Batch:
     def add_quality_check(self, issue):
         self.quality_checks.append(issue)
 
-# Quality Control subdomain
+# Quality Control:subdomain
 class QualityControl:
     def __init__(self, batch):
         self.batch = batch
